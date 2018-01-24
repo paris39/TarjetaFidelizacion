@@ -24,8 +24,11 @@ public class UserController {
 	public String login(String login, String password) {
 		// Crear dto
 		
-		userService.login(login, password);
+		if (userService.login(login, password)) {
+			return "true";
+		} else {
+			return "error";	
+		}
 		
-		return "miVista";	
 	}
 }

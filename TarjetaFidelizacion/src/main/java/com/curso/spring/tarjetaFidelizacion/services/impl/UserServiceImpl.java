@@ -14,8 +14,8 @@ import com.curso.spring.tarjetaFidelizacion.services.UserService;
 public class UserServiceImpl implements UserService {
 	
 	@Override
-	public void login(String login, String password) {
+	public boolean login(String login, String password) {
 		// Validar usuario y contraseña
-		
+		return true;
 	}
 }

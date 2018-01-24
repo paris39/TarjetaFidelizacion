@@ -14,5 +14,5 @@ public interface UserService {
 	 * @param login
 	 * @param password
 	 */
-	public void login (String login, String password);
+	public boolean login (String login, String password);
 }
