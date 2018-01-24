@@ -3,14 +3,19 @@
  */
 package com.curso.spring.tarjetaFidelizacion.dto;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 /**
  * @author jparis
  */
 public class OperatorDto extends UserDto {
 	
+	@NotEmpty
+	@Length(min=9, max=9)
 	private String cif;
 	private String web;
-	private int idType;
 	private String conversionFactor;
 	
 	public OperatorDto() {
@@ -33,11 +38,10 @@ public class OperatorDto extends UserDto {
 	 * @param idType
 	 * @param conversionFactor
 	 */
-	public OperatorDto(String cif, String web, int idType, String conversionFactor) {
+	public OperatorDto(String cif, String web, String conversionFactor) {
 		super();
 		this.cif = cif;
 		this.web = web;
-		this.idType = idType;
 		this.conversionFactor = conversionFactor;
 	}
 
@@ -67,20 +71,6 @@ public class OperatorDto extends UserDto {
 	 */
 	public void setWeb(String web) {
 		this.web = web;
-	}
-
-	/**
-	 * @return the idType
-	 */
-	public int getIdType() {
-		return idType;
-	}
-
-	/**
-	 * @param idType the idType to set
-	 */
-	public void setIdType(int idType) {
-		this.idType = idType;
 	}
 
 	/**

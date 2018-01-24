@@ -3,12 +3,15 @@
  */
 package com.curso.spring.tarjetaFidelizacion.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @author jparis
  *
  */
 public class ClientDto extends UserDto {
 	
+	@NotEmpty
 	private String surname;
 	private long points;
 	

@@ -3,14 +3,23 @@
  */
 package com.curso.spring.tarjetaFidelizacion.dto;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 /**
  * @author jparis
  */
 public abstract class UserDto {
 	
 	private int id;
+	@NotEmpty
+	@Length(min=3)
 	private String login;
+	@NotEmpty
+	@Length(min=6)
 	private String password;
+	@NotEmpty
 	private String name;
 	
 	
@@ -30,6 +39,15 @@ public abstract class UserDto {
 		this.login = login;
 		this.password = password;
 		this.name = name;
+	}
+	
+	/**
+	 * @param login
+	 * @param password
+	 */
+	public UserDto (String login, String password) {
+		this.login = login;
+		this.password = password;
 	}
 
 	/**
