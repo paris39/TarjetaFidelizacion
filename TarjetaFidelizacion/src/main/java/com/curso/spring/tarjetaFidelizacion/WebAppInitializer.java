@@ -21,7 +21,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 		// Se le indican las opciones del contexto de Spring. En nuestro caso por Anotaciones. WebApplicationContext > F4 (Type Hierarchy) > Focus On...
 		AnnotationConfigWebApplicationContext webApplicationContext = new AnnotationConfigWebApplicationContext();
 		
-		webApplicationContext.setConfigLocation("com.curso.spring.mvc.config");
+		webApplicationContext.setConfigLocation("com.curso.spring.tarjetaFidelizacion.config");
 		
 		Dynamic servlet = servletContext.addServlet("dispatcherServlet", new DispatcherServlet(webApplicationContext));
 		

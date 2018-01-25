@@ -15,6 +15,8 @@ import com.curso.spring.tarjetaFidelizacion.services.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	
+	// Llamadas a DTO (@Repository) mediante @Autowired
+	
 	@Override
 	public boolean login(String login, String password) {
 		// Validar usuario y contraseña

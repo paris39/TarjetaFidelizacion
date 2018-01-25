@@ -41,8 +41,17 @@ public class ConfiguracionWeb implements WebMvcConfigurer {
 	public void addViewControllers(ViewControllerRegistry registry) { // Si se pierde el EndPoint GET en FormController está esta solución
 		WebMvcConfigurer.super.addViewControllers(registry);
 		
-		registry.addViewController("/formulario").setViewName("formulario");
+//		registry.addViewController("/formulario").setViewName("formulario");
 	}
+	
+	/**
+	 * @return
+	 */
+	@Bean
+	public View clientLogin() {
+		return new InternalResourceView("/WEB-INF/jsps/login.jsp");
+	}
+	
 	
 	/**
 	 * @return
@@ -77,7 +86,7 @@ public class ConfiguracionWeb implements WebMvcConfigurer {
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		
-		messageSource.setBasenames("/WEB-INF/mensajes");
+		messageSource.setBasenames("/WEB-INF/messages");
 		
 		return messageSource;
 	}

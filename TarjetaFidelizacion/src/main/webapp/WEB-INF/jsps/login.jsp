@@ -8,7 +8,7 @@
 		<title><spring:message code="login.title"/></title>
 	</head>
 	<body>
-		<form:form modelAttribute="user" method="POST">
+		<form:form modelAttribute="client" method="POST">
 			<table>
 				<tr>
 					<td><spring:message code="login.login"/></td>

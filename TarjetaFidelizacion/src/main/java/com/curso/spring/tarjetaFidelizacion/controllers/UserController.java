@@ -3,15 +3,15 @@
  */
 package com.curso.spring.tarjetaFidelizacion.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
 import com.curso.spring.tarjetaFidelizacion.dto.OperatorDto;
-import com.curso.spring.tarjetaFidelizacion.dto.UserDto;
 import com.curso.spring.tarjetaFidelizacion.services.UserService;
 
 /**
@@ -20,22 +20,22 @@ import com.curso.spring.tarjetaFidelizacion.services.UserService;
  * @author jparis
  */
 @Controller
-@RequestMapping(path="/user")
 public class UserController {
 	
-	/**
-	 * Ponemos este objeto en el Request, porque formulario.jsp lo busca, y la primera vez que se renderiza el formulario.jsp,
-	 * "al no pasar por controller", no existirá el objeto
-	 * 
-	 * @return
-	 */
-	@ModelAttribute("user")
-	public UserDto user() {
-		return new ClientDto();
-	}
-	
 	@Autowired
+	//@Qualifier(value="userService")
 	private UserService userService;
+	
+	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	public String iniciarLogin (Map<String, Object> model) {
+		// La lógica a continuación, es sustituida por los métodos anotados por @ModelAttribute
+		// Invocamos la lógica para recuperar los datos del Género
+		
+		// servicio.obtenerGeneros();
+		// model.put("generos", new String[] {"Masculino", "Femenino"});
+		
+		return "login";
+	}
 	
 	/**
 	 * Login de un usuario en la aplicación
