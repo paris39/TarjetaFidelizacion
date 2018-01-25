@@ -3,8 +3,8 @@
  */
 package com.curso.spring.tarjetaFidelizacion.services;
 
-import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
-import com.curso.spring.tarjetaFidelizacion.dto.OperatorDto;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
 
 /**
  * @author jparis
@@ -25,7 +25,7 @@ public interface UserService {
 	 * @param newClient
 	 * @return
 	 */
-	public boolean newClient (ClientDto newClient);
+	public boolean newClient (Client newClient);
 	
 	/**
 	 * Alta de un nuevo Operador
@@ -33,5 +33,5 @@ public interface UserService {
 	 * @param newOperator
 	 * @return
 	 */
-	public boolean newOperator (OperatorDto newOperator);
+	public boolean newOperator (Operator newOperator);
 }

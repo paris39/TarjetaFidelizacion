@@ -5,7 +5,7 @@ package com.curso.spring.tarjetaFidelizacion.services.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.services.ClientService;
 
 /**
@@ -15,7 +15,7 @@ import com.curso.spring.tarjetaFidelizacion.services.ClientService;
 public class ClientServiceImpl implements ClientService {
 
 	@Override
-	public long queryPoints(ClientDto client) {
+	public long queryPoints(Client client) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

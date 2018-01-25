@@ -3,7 +3,7 @@
  */
 package com.curso.spring.tarjetaFidelizacion.services;
 
-import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 
 /**
  * @author jparis
@@ -16,5 +16,5 @@ public interface ClientService {
 	 * @param client
 	 * @return
 	 */
-	public long queryPoints(ClientDto client);
+	public long queryPoints(Client client);
 }

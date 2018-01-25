@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
-import com.curso.spring.tarjetaFidelizacion.dto.OperatorDto;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
 import com.curso.spring.tarjetaFidelizacion.services.UserService;
 
 /**
@@ -60,7 +60,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(path="/newClient", method=RequestMethod.POST)
-	public String newClient(ClientDto newClient) {		
+	public String newClient(Client newClient) {		
 		if (userService.newClient(newClient)) {
 			return "true";
 		} else {
@@ -75,7 +75,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(path="/newOperator", method=RequestMethod.POST)
-	public String newOperator(OperatorDto newOperator) {		
+	public String newOperator(Operator newOperator) {		
 		if (userService.newOperator(newOperator)) {
 			return "true";
 		} else {

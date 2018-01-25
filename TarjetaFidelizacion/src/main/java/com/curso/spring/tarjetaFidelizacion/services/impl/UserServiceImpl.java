@@ -5,8 +5,8 @@ package com.curso.spring.tarjetaFidelizacion.services.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
-import com.curso.spring.tarjetaFidelizacion.dto.OperatorDto;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
 import com.curso.spring.tarjetaFidelizacion.services.UserService;
 
 /**
@@ -24,13 +24,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean newClient(ClientDto newClient) {
+	public boolean newClient(Client newClient) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean newOperator(OperatorDto newOperator) {
+	public boolean newOperator(Operator newOperator) {
 		// TODO Auto-generated method stub
 		return false;
 	}
