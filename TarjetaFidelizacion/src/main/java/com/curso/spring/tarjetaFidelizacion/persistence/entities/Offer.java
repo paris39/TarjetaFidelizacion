@@ -16,21 +16,37 @@ public class Offer {
 	private float price;
 	private String initPlace;
 	private String endPlace;
+	private Operator operator;
 	
+	public Offer() {
+		super();
+	}
+	
+	/**
+	 * @param initDate
+	 * @param endDate
+	 * @param price
+	 * @param initPlace
+	 * @param endPlace
+	 * @param operator
+	 */
+	public Offer(Date initDate, Date endDate, float price, String initPlace, String endPlace, Operator operator) {
+		super();
+		this.initDate = initDate;
+		this.endDate = endDate;
+		this.price = price;
+		this.initPlace = initPlace;
+		this.endPlace = endPlace;
+		this.operator = operator;
+	}
+
 	/**
 	 * @return the id
 	 */
 	public int getId() {
 		return id;
 	}
-	
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-	
+
 	/**
 	 * @return the initDate
 	 */
@@ -99,6 +115,20 @@ public class Offer {
 	 */
 	public void setEndPlace(String endPlace) {
 		this.endPlace = endPlace;
+	}
+
+	/**
+	 * @return the operator
+	 */
+	public Operator getOperator() {
+		return operator;
+	}
+
+	/**
+	 * @param operator the operator to set
+	 */
+	public void setOperator(Operator operator) {
+		this.operator = operator;
 	}
 	
 }

@@ -26,7 +26,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc // Se crean HandleMappings
 @ComponentScan(basePackages="com.curso.spring.tarjetaFidelizacion") // Se le añaden los paquetes dónde encontrar los beans o componentes de Spring
-public class ConfiguracionWeb implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -49,16 +49,7 @@ public class ConfiguracionWeb implements WebMvcConfigurer {
 	 */
 	@Bean
 	public View clientLogin() {
-		return new InternalResourceView("/WEB-INF/jsps/login.jsp");
-	}
-	
-	
-	/**
-	 * @return
-	 */
-	@Bean
-	public View miVista() {
-		return new InternalResourceView("/WEB-INF/jsps/index.jsp");
+		return new InternalResourceView("/WEB-INF/jsps/clientLogin.jsp");
 	}
 	
 	/**

@@ -8,7 +8,7 @@
 		<title><spring:message code="login.title"/></title>
 	</head>
 	<body>
-		<form:form modelAttribute="client" method="POST">
+		<form:form modelAttribute="operator" method="POST">
 			<table>
 				<tr>
 					<td><spring:message code="login.login"/></td>
@@ -20,13 +20,9 @@
 					<td><form:password path="password" /></td>
 					<td><form:errors path="password"/></td>
 				</tr>
-				<%-- <tr>
-					<td>Sexo: </td>
-					<td colspan="2"><form:select path="sexo" items="${generos}"/></td>
-				</tr> --%>
 				<tr>
 					<td colspan="3">
-						<input type="submit" value="Guardar info" />
+						<input type="submit" value="login.enter" />
 					</td>
 				</tr>
 			</table>

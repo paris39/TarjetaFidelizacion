@@ -10,9 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
-import com.curso.spring.tarjetaFidelizacion.services.UserService;
+import com.curso.spring.tarjetaFidelizacion.services.OperatorService;
 
 /**
  * Controlador de las operaciones de Usuario (Clientes y Operadores)
@@ -20,13 +19,13 @@ import com.curso.spring.tarjetaFidelizacion.services.UserService;
  * @author jparis
  */
 @Controller
-public class UserController {
+public class OperatorController {
 	
 	@Autowired
 	//@Qualifier(value="userService")
-	private UserService userService;
+	private OperatorService operatorService;
 	
-	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	@RequestMapping(path = "/operatorLogin", method = RequestMethod.GET)
 	public String iniciarLogin (Map<String, Object> model) {
 		// La lógica a continuación, es sustituida por los métodos anotados por @ModelAttribute
 		// Invocamos la lógica para recuperar los datos del Género
@@ -38,30 +37,15 @@ public class UserController {
 	}
 	
 	/**
-	 * Login de un usuario en la aplicación
+	 * Login de un operador en la aplicación
 	 * 
 	 * @param login
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(path="/login", method=RequestMethod.POST)
+	@RequestMapping(path="/operatorLogin", method=RequestMethod.POST)
 	public String login(String login, String password) {
-		if (userService.login(login, password)) {
-			return "true";
-		} else {
-			return "error";	
-		}
-	}
-	
-	/**
-	 * Alta de Nuevo cliente
-	 * 
-	 * @param newClient
-	 * @return
-	 */
-	@RequestMapping(path="/newClient", method=RequestMethod.POST)
-	public String newClient(Client newClient) {		
-		if (userService.newClient(newClient)) {
+		if (operatorService.operatorLogin(login, password)) {
 			return "true";
 		} else {
 			return "error";	
@@ -76,7 +60,7 @@ public class UserController {
 	 */
 	@RequestMapping(path="/newOperator", method=RequestMethod.POST)
 	public String newOperator(Operator newOperator) {		
-		if (userService.newOperator(newOperator)) {
+		if (operatorService.newOperator(newOperator)) {
 			return "true";
 		} else {
 			return "error";	

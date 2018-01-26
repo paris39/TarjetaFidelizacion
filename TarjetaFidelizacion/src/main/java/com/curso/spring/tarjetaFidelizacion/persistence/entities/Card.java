@@ -9,7 +9,7 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 public class Card {
 	
 	private int id;
-	private int clientId;
+	private Client client;
 	
 	public Card() {
 		super();
@@ -17,12 +17,12 @@ public class Card {
 	
 	/**
 	 * @param id
-	 * @param clientId
+	 * @param client
 	 */
-	public Card(int id, int clientId) {
+	public Card(int id, Client client) {
 		super();
 		this.id = id;
-		this.clientId = clientId;
+		this.client = client;
 	}
 
 	/**
@@ -33,24 +33,17 @@ public class Card {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @return the client
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public Client getClient() {
+		return client;
 	}
 
 	/**
-	 * @return the clientId
+	 * @param client the client to set
 	 */
-	public int getClientId() {
-		return clientId;
-	}
-
-	/**
-	 * @param clientId the clientId to set
-	 */
-	public void setClientId(int clientId) {
-		this.clientId = clientId;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 }

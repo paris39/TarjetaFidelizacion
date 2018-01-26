@@ -44,13 +44,6 @@ public class Client {
 	}
 
 	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
 	 * @return the login
 	 */
 	public String getLogin() {

@@ -5,33 +5,24 @@ package com.curso.spring.tarjetaFidelizacion.services.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
-import com.curso.spring.tarjetaFidelizacion.services.UserService;
+import com.curso.spring.tarjetaFidelizacion.services.OperatorService;
 
 /**
  * @author jparis
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class OperatorServiceImpl implements OperatorService {
 	
 	// Llamadas a DTO (@Repository) mediante @Autowired
-	
-	@Override
-	public boolean login(String login, String password) {
-		// Validar usuario y contraseña
-		return true;
-	}
 
 	@Override
-	public boolean newClient(Client newClient) {
-		// TODO Auto-generated method stub
+	public boolean newOperator(Operator newOperator) {
 		return false;
 	}
 
 	@Override
-	public boolean newOperator(Operator newOperator) {
-		// TODO Auto-generated method stub
+	public boolean operatorLogin(String login, String password) {
 		return false;
 	}
 }

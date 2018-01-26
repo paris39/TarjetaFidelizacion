@@ -3,29 +3,20 @@
  */
 package com.curso.spring.tarjetaFidelizacion.services;
 
-import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
 
 /**
  * @author jparis
  */
-public interface UserService {
+public interface OperatorService {
 	
 	/**
-	 * Login de usuario
+	 * Login de operador
 	 * 
 	 * @param login
 	 * @param password
 	 */
-	public boolean login (String login, String password);
-	
-	/**
-	 * Alta de un nuevo cliente
-	 * 
-	 * @param newClient
-	 * @return
-	 */
-	public boolean newClient (Client newClient);
+	public boolean operatorLogin (String login, String password);
 	
 	/**
 	 * Alta de un nuevo Operador

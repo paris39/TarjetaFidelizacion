@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class Movement {
 	private long id;
-	private int cardId;
+	private Card card;
 	private Date date;
 	private long quantity;
 	private String description;
@@ -21,15 +21,15 @@ public class Movement {
 	
 	/**
 	 * @param id
-	 * @param cardId
+	 * @param card
 	 * @param date
 	 * @param quantity
 	 * @param description
 	 */
-	public Movement(long id, int cardId, Date date, long quantity, String description) {
+	public Movement(long id, Card cardId, Date date, long quantity, String description) {
 		super();
 		this.id = id;
-		this.cardId = cardId;
+		this.card = cardId;
 		this.date = date;
 		this.quantity = quantity;
 		this.description = description;
@@ -43,24 +43,17 @@ public class Movement {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @return the card
 	 */
-	public void setId(long id) {
-		this.id = id;
+	public Card getCard() {
+		return card;
 	}
 
 	/**
-	 * @return the cardId
+	 * @param card the card to set
 	 */
-	public int getCardId() {
-		return cardId;
-	}
-
-	/**
-	 * @param cardId the cardId to set
-	 */
-	public void setCardId(int cardId) {
-		this.cardId = cardId;
+	public void setCardId(Card card) {
+		this.card = card;
 	}
 
 	/**

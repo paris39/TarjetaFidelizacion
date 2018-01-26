@@ -15,6 +15,7 @@ public class Operator {
 	private String cif;
 	private String web;
 	private String conversionFactor;
+	private Type type;
 	
 	public Operator() {
 		super();
@@ -28,14 +29,16 @@ public class Operator {
 	 * @param web
 	 * @param idType
 	 * @param conversionFactor
+	 * @param type
 	 */
-	public Operator(String login, String password, String name, String cif, String web, String conversionFactor) {
+	public Operator(String login, String password, String name, String cif, String web, String conversionFactor, Type type) {
 		this.login = login;
 		this.password = password;
 		this.name = name;
 		this.cif = cif;
 		this.web = web;
 		this.conversionFactor = conversionFactor;
+		this.type = type;
 	}
 	
 	/**
@@ -43,13 +46,6 @@ public class Operator {
 	 */
 	public int getId() {
 		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	/**
@@ -134,6 +130,20 @@ public class Operator {
 	 */
 	public void setConversionFactor(String conversionFactor) {
 		this.conversionFactor = conversionFactor;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public Type getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(Type type) {
+		this.type = type;
 	}
 	
 }
