@@ -15,6 +15,7 @@ public class Client {
 	private String name;
 	private String surname;
 	private long points;
+	private String email;
 	
 		
 	public Client() {
@@ -27,13 +28,15 @@ public class Client {
 	 * @param name
 	 * @param surname
 	 * @param points
+	 * @param email
 	 */
-	public Client(String login, String password, String name, String surname, long points) {
+	public Client(String login, String password, String name, String surname, long points, String email) {
 		this.login = login;
 		this.password = password;
 		this.name = name;
 		this.surname = surname;
 		this.points = points;
+		this.email = email;
 	}
 	
 	/**
@@ -111,6 +114,20 @@ public class Client {
 	 */
 	public void setPoints(long points) {
 		this.points = points;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

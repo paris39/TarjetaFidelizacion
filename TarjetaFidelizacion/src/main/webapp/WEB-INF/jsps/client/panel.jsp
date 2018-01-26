@@ -5,10 +5,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-		<title><spring:message code="login.title"/></title>
+		<title><spring:message code="client.login.title"/></title>
 	</head>
 	<body>
-		<form:form modelAttribute="operator" method="POST">
+		<form:form modelAttribute="client" method="POST">
 			<table>
 				<tr>
 					<td><spring:message code="login.login"/></td>

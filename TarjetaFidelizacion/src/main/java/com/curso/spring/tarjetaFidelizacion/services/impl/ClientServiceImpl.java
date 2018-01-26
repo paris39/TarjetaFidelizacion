@@ -42,7 +42,12 @@ public class ClientServiceImpl implements ClientService {
 	public boolean newClient(ClientDto newClient) {
 		return false;
 	}
-
+	
+	@Override
+	public List<CardDto> listCard(ClientDto client) {
+		return null;
+	}
+	
 	@Override
 	public List<OfferDto> listAllOffer() {
 		return offerService.listAllOffer();
@@ -58,5 +63,6 @@ public class ClientServiceImpl implements ClientService {
 	public boolean bookOffer(CardDto card, OfferDto offer, int quantity) {
 		return offerService.bookOffer(card, offer, quantity);
 	}
+
 
 }

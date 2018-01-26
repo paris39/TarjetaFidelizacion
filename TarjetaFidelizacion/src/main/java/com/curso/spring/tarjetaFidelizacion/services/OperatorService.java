@@ -3,6 +3,7 @@
  */
 package com.curso.spring.tarjetaFidelizacion.services;
 
+import com.curso.spring.tarjetaFidelizacion.dto.OperatorDto;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
 
 /**
@@ -13,10 +14,9 @@ public interface OperatorService {
 	/**
 	 * Login de operador
 	 * 
-	 * @param login
-	 * @param password
+	 * @param operator
 	 */
-	public boolean operatorLogin (String login, String password);
+	public boolean operatorLogin (OperatorDto operator);
 	
 	/**
 	 * Alta de un nuevo Operador

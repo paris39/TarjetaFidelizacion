@@ -5,10 +5,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-		<title><spring:message code="login.title"/></title>
+		<title><spring:message code="operator.login.title"/></title>
 	</head>
 	<body>
-		<form:form modelAttribute="client" method="POST">
+		<form:form modelAttribute="operator" method="POST">
 			<table>
 				<tr>
 					<td><spring:message code="login.login"/></td>
@@ -22,7 +22,8 @@
 				</tr>
 				<tr>
 					<td colspan="3">
-						<input type="submit" value="login.enter" />
+						<spring:message code="login.enter" var="loginEnter" />
+						<input type="submit" value="${loginEnter}" />
 					</td>
 				</tr>
 			</table>

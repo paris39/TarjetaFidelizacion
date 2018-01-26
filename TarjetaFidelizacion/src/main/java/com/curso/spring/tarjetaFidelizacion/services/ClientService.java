@@ -32,6 +32,14 @@ public interface ClientService {
 	public boolean newClient (ClientDto newClient);
 	
 	/**
+	 * Listado de tarjetas de un determinado cliente
+	 * 
+	 * @param client
+	 * @return
+	 */
+	public List<CardDto> listCard (ClientDto client);
+	
+	/**
 	 * Consulta de puntos de un cliente
 	 * 
 	 * @param client

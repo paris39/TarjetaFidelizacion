@@ -44,17 +44,26 @@ public class WebConfig implements WebMvcConfigurer {
 //		registry.addViewController("/formulario").setViewName("formulario");
 	}
 	
-	/**
-	 * @return
-	 */
+	
+	/*** VISTAS ***/
+	// Cliente
 	@Bean
 	public View clientLogin() {
-		return new InternalResourceView("/WEB-INF/jsps/clientLogin.jsp");
+		return new InternalResourceView("/WEB-INF/jsps/client/login.jsp");
 	}
 	
-	/**
-	 * @return
-	 */
+	@Bean
+	public View clientPanel() {
+		return new InternalResourceView("/WEB-INF/jsps/client/panel.jsp");
+	}
+	
+	// Operador
+	@Bean
+	public View operatorLogin() {
+		return new InternalResourceView("/WEB-INF/jsps/operator/login.jsp");
+	}
+	
+	/*** RESOLVERS ***/
 	@Bean
 	public ViewResolver beanNameViewResolver() {
 		BeanNameViewResolver viewResolver = new BeanNameViewResolver();
@@ -62,9 +71,6 @@ public class WebConfig implements WebMvcConfigurer {
 		return viewResolver;
 	}
 	
-	/**
-	 * @return
-	 */
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		return new InternalResourceViewResolver("/WEB-INF/jsps/", ".jsp");

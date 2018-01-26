@@ -5,6 +5,7 @@ package com.curso.spring.tarjetaFidelizacion.services.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.curso.spring.tarjetaFidelizacion.dto.OperatorDto;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
 import com.curso.spring.tarjetaFidelizacion.services.OperatorService;
 
@@ -22,7 +23,7 @@ public class OperatorServiceImpl implements OperatorService {
 	}
 
 	@Override
-	public boolean operatorLogin(String login, String password) {
+	public boolean operatorLogin(OperatorDto operator) {
 		return false;
 	}
 }

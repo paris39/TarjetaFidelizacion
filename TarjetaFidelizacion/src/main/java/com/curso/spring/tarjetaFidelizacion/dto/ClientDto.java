@@ -14,6 +14,7 @@ public class ClientDto extends UserDto {
 	@NotEmpty
 	private String surname;
 	private long points;
+	private String email;
 	
 		
 	public ClientDto() {
@@ -33,11 +34,13 @@ public class ClientDto extends UserDto {
 	/**
 	 * @param surname
 	 * @param points
+	 * @param email
 	 */
-	public ClientDto(String surname, long points) {
+	public ClientDto(String surname, long points, String email) {
 		super();
 		this.surname = surname;
 		this.points = points;
+		this.email = email;
 	}
 
 	/**
@@ -67,5 +70,19 @@ public class ClientDto extends UserDto {
 	public void setPoints(long points) {
 		this.points = points;
 	}
-	
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

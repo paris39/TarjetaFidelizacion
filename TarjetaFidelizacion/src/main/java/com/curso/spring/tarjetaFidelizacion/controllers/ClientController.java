@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
-import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.services.ClientService;
 
 /**
@@ -33,8 +32,8 @@ public class ClientController {
 	 * @return new client
 	 */
 	@ModelAttribute("client")
-	public Client client() {
-		return new Client();
+	public ClientDto client() {
+		return new ClientDto();
 	}
 	
 	@Autowired
