@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.curso.spring.tarjetaFidelizacion.dto.CardDto;
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
 import com.curso.spring.tarjetaFidelizacion.dto.OfferDto;
+import com.curso.spring.tarjetaFidelizacion.marshall.ClientMarshall;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.services.ClientService;
 import com.curso.spring.tarjetaFidelizacion.services.OfferService;
 
@@ -23,6 +25,9 @@ public class ClientServiceImpl implements ClientService {
 	
 	@Autowired
 	private OfferService offerService;
+	
+	@Autowired
+	private ClientMarshall clientMarshall;
 
 	@Override
 	public long queryPoints(ClientDto client) {
@@ -31,6 +36,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public boolean clientLogin(ClientDto client) {
+		// TODO
 		if (client.getLogin().equalsIgnoreCase(client.getPassword())) {
 			return true;
 		} else {
@@ -40,11 +46,17 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public boolean newClient(ClientDto newClient) {
+		Client client = clientMarshall.clientMarshall(newClient);
+		
+		//clientDao.save(client);
+		
 		return false;
 	}
 	
 	@Override
 	public List<CardDto> listCard(ClientDto client) {
+		// Buscar tarjetas asociadas a clientes
+		
 		return null;
 	}
 	

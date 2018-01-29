@@ -42,5 +42,5 @@ public interface OfferService {
 	 * @param quantity
 	 * @return
 	 */
-	public boolean bookOffer(CardDto card, OfferDto offer, int quantity);
+	public boolean bookOffer(CardDto card, OfferDto offer, long quantity);
 }

@@ -35,8 +35,8 @@ public class OfferServiceImpl implements OfferService {
 	}
 
 	@Override
-	public boolean bookOffer(CardDto card, OfferDto offer, int quantity) {
-		return movementService.newMovement(card, offer, quantity);
+	public boolean bookOffer(CardDto card, OfferDto offer, long quantity) {
+		return movementService.newMovement(card.getId(), offer.getDescription(), quantity);
 	}
 
 }

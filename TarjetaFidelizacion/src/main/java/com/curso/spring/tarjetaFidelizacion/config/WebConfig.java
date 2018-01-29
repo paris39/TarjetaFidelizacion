@@ -63,6 +63,11 @@ public class WebConfig implements WebMvcConfigurer {
 		return new InternalResourceView("/WEB-INF/jsps/operator/login.jsp");
 	}
 	
+	@Bean
+	public View operatorPanel() {
+		return new InternalResourceView("/WEB-INF/jsps/operator/panel.jsp");
+	}
+	
 	/*** RESOLVERS ***/
 	@Bean
 	public ViewResolver beanNameViewResolver() {

@@ -18,6 +18,7 @@ public class OperatorDto extends UserDto {
 	private String web;
 	private String conversionFactor;
 	private String email;
+	private boolean admin;
 	
 	public OperatorDto() {
 		super();
@@ -38,13 +39,15 @@ public class OperatorDto extends UserDto {
 	 * @param web
 	 * @param idType
 	 * @param conversionFactor
+	 * @param admin
 	 */
-	public OperatorDto(String cif, String web, String email, String conversionFactor) {
+	public OperatorDto(String cif, String web, String email, String conversionFactor, boolean admin) {
 		super();
 		this.cif = cif;
 		this.web = web;
 		this.conversionFactor = conversionFactor;
 		this.email = email;
+		this.admin = admin;
 	}
 
 	/**
@@ -101,6 +104,20 @@ public class OperatorDto extends UserDto {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * @return the admin
+	 */
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	/**
+	 * @param admin the admin to set
+	 */
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 }

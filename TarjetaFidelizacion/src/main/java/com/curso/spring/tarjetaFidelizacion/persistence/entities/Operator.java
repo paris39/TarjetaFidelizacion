@@ -16,6 +16,7 @@ public class Operator {
 	private String web;
 	private String conversionFactor;
 	private Type type;
+	private boolean admin;
 	
 	public Operator() {
 		super();
@@ -30,8 +31,9 @@ public class Operator {
 	 * @param idType
 	 * @param conversionFactor
 	 * @param type
+	 * @param admin
 	 */
-	public Operator(String login, String password, String name, String cif, String web, String conversionFactor, Type type) {
+	public Operator(String login, String password, String name, String cif, String web, String conversionFactor, Type type, boolean admin) {
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -39,6 +41,7 @@ public class Operator {
 		this.web = web;
 		this.conversionFactor = conversionFactor;
 		this.type = type;
+		this.admin = admin;
 	}
 	
 	/**
@@ -144,6 +147,20 @@ public class Operator {
 	 */
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the admin
+	 */
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	/**
+	 * @param admin the admin to set
+	 */
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 	
 }

@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class MovementDto {
 	private long id;
-	private int cardId;
+	private long cardId;
 	private Date date;
 	private long quantity;
 	private String description;
@@ -26,7 +26,7 @@ public class MovementDto {
 	 * @param quantity
 	 * @param description
 	 */
-	public MovementDto(long id, int cardId, Date date, long quantity, String description) {
+	public MovementDto(long id, long cardId, Date date, long quantity, String description) {
 		super();
 		this.id = id;
 		this.cardId = cardId;
@@ -52,14 +52,14 @@ public class MovementDto {
 	/**
 	 * @return the cardId
 	 */
-	public int getCardId() {
+	public long getCardId() {
 		return cardId;
 	}
 
 	/**
 	 * @param cardId the cardId to set
 	 */
-	public void setCardId(int cardId) {
+	public void setCardId(long cardId) {
 		this.cardId = cardId;
 	}
 

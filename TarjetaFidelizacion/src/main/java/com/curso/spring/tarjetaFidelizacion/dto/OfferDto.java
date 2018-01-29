@@ -9,7 +9,8 @@ import java.util.Date;
  * @author jparis
  */
 public class OfferDto {
-	private int id;
+	private long id;
+	private String description;
 	private Date initDate;
 	private Date endDate;
 	private float price;
@@ -17,9 +18,37 @@ public class OfferDto {
 	private String endPlace;
 	
 	/**
+	 * 
+	 */
+	public OfferDto() {
+		super();
+	}
+	
+	/**
+	 * @param id
+	 * @param description
+	 * @param initDate
+	 * @param endDate
+	 * @param price
+	 * @param initPlace
+	 * @param endPlace
+	 */
+	public OfferDto(long id, String description, Date initDate, Date endDate, float price, String initPlace,
+			String endPlace) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.initDate = initDate;
+		this.endDate = endDate;
+		this.price = price;
+		this.initPlace = initPlace;
+		this.endPlace = endPlace;
+	}
+
+	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
@@ -28,6 +57,20 @@ public class OfferDto {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	/**

@@ -10,7 +10,8 @@ import java.util.Date;
  */
 public class Offer {
 	
-	private int id;
+	private long id;
+	private String description;
 	private Date initDate;
 	private Date endDate;
 	private float price;
@@ -23,6 +24,7 @@ public class Offer {
 	}
 	
 	/**
+	 * @param description;
 	 * @param initDate
 	 * @param endDate
 	 * @param price
@@ -30,8 +32,9 @@ public class Offer {
 	 * @param endPlace
 	 * @param operator
 	 */
-	public Offer(Date initDate, Date endDate, float price, String initPlace, String endPlace, Operator operator) {
+	public Offer(String description, Date initDate, Date endDate, float price, String initPlace, String endPlace, Operator operator) {
 		super();
+		this.description = description;
 		this.initDate = initDate;
 		this.endDate = endDate;
 		this.price = price;
@@ -43,8 +46,22 @@ public class Offer {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
+	}
+	
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**
