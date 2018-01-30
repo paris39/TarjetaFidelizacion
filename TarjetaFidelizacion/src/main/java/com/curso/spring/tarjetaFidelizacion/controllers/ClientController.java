@@ -5,6 +5,7 @@ package com.curso.spring.tarjetaFidelizacion.controllers;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
 import com.curso.spring.tarjetaFidelizacion.services.ClientService;
+import com.curso.spring.tarjetaFidelizacion.services.exception.ClientServiceException;
 
 /**
  * Controlador de las operaciones de Usuario (Clientes y Operadores)
@@ -23,6 +26,7 @@ import com.curso.spring.tarjetaFidelizacion.services.ClientService;
  * @author jparis
  */
 @Controller
+@SessionAttributes("client")
 public class ClientController {
 	
 	/**
@@ -42,9 +46,11 @@ public class ClientController {
 	// Views constantes
 	private static final String CLIENT_LOGIN = "clientLogin";
 	private static final String CLIENT_PANEL = "clientPanel";
+	private static final String NEW_CLIENT = "newClient";
 	
 	// Paths constantes
 	private static final String PATH_CLIENT_LOGIN = "/clientLogin";
+	private static final String PATH_NEW_CLIENT = "newClient";
 	private static final String PATH_POINTS_QUERY = "/pointsQuery";
 	
 	@RequestMapping(path = PATH_CLIENT_LOGIN, method = RequestMethod.GET)
@@ -53,16 +59,31 @@ public class ClientController {
 	}
 	
 	@RequestMapping(path = PATH_CLIENT_LOGIN, method = RequestMethod.POST)
-	public String clientLogin (@Valid @ModelAttribute ClientDto client, Errors errors) {
+	public String clientLogin (@Valid @ModelAttribute ClientDto client, Errors errors, HttpSession session) {
 		if (clientService.clientLogin(client)) {
 			return CLIENT_PANEL;			
 		} else {
+			// Mensaje de error al usuario TODO
+			session.setAttribute("client", client);
 			return CLIENT_LOGIN;
 		}
 	}
 	
+	@RequestMapping(path = PATH_NEW_CLIENT, method = RequestMethod.POST)
+	public String newClient (@Valid @ModelAttribute ClientDto newClient, Errors errors, HttpSession session) {
+		try {
+			clientService.newClient(newClient);
+			return CLIENT_PANEL;
+		} catch (ClientServiceException e) {
+			Error error = new Error(e.getMessage());
+			session.setAttribute("error", error);
+
+			return NEW_CLIENT;
+		}
+	}
+	
 	/**
-	 * Consult de puntos de un cliente
+	 * Consulta de puntos de un cliente
 	 * 
 	 * @param client
 	 * @return

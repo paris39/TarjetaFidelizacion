@@ -11,18 +11,38 @@
 		<form:form modelAttribute="client" method="POST">
 			<table>
 				<tr>
-					<td><spring:message code="login.login"/></td>
+					<td><spring:message code="client.field.login"/></td>
 					<td><form:input path="login" /></td>
 					<td><form:errors path="login"/></td>
 				</tr>
 				<tr>
-					<td><spring:message code="login.password"/></td>
+					<td><spring:message code="client.field.password"/></td>
 					<td><form:password path="password" /></td>
 					<td><form:errors path="password"/></td>
 				</tr>
 				<tr>
+					<td><spring:message code="client.field.repeatPassword"/></td>
+					<td><form:password path="repeatPassword" /></td>
+					<td><form:errors path="repeatPassword"/></td>
+				</tr>
+				<tr>
+					<td><spring:message code="client.field.email"/></td>
+					<td><form:input path="email" /></td>
+					<td><form:errors path="email"/></td>
+				</tr>
+				<tr>
+					<td><spring:message code="client.field.name"/></td>
+					<td><form:input path="name" /></td>
+					<td><form:errors path="name"/></td>
+				</tr>
+				<tr>
+					<td><spring:message code="client.field.surname"/></td>
+					<td><form:input path="surname" /></td>
+					<td><form:errors path="surname"/></td>
+				</tr>
+				<tr>
 					<td colspan="3">
-						<spring:message code="login.enter" var="loginEnter" />
+						<spring:message code="client.newClient.button" var="loginEnter" />
 						<input type="submit" value="${loginEnter}" />
 					</td>
 				</tr>

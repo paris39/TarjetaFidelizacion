@@ -9,6 +9,7 @@ import java.util.List;
 import com.curso.spring.tarjetaFidelizacion.dto.CardDto;
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
 import com.curso.spring.tarjetaFidelizacion.dto.OfferDto;
+import com.curso.spring.tarjetaFidelizacion.services.exception.ClientServiceException;
 
 /**
  * @author jparis
@@ -27,9 +28,9 @@ public interface ClientService {
 	 * Alta de un nuevo cliente
 	 * 
 	 * @param newClient
-	 * @return
+	 * @throws ClientServiceException
 	 */
-	public boolean newClient (ClientDto newClient);
+	public void newClient (ClientDto newClient) throws ClientServiceException;
 	
 	/**
 	 * Listado de tarjetas de un determinado cliente

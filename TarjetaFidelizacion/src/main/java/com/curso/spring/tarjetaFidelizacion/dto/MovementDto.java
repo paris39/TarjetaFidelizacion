@@ -14,6 +14,7 @@ public class MovementDto {
 	private Date date;
 	private long quantity;
 	private String description;
+	private long operatorId;
 	
 	public MovementDto() {
 		super();
@@ -25,14 +26,16 @@ public class MovementDto {
 	 * @param date
 	 * @param quantity
 	 * @param description
+	 * @param operatorId
 	 */
-	public MovementDto(long id, long cardId, Date date, long quantity, String description) {
+	public MovementDto(long id, long cardId, Date date, long quantity, String description, long operatorId) {
 		super();
 		this.id = id;
 		this.cardId = cardId;
 		this.date = date;
 		this.quantity = quantity;
 		this.description = description;
+		this.operatorId = operatorId;
 	}
 
 	/**
@@ -103,6 +106,20 @@ public class MovementDto {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @return the operatorId
+	 */
+	public long getOperatorId() {
+		return operatorId;
+	}
+
+	/**
+	 * @param operatorId the operatorId to set
+	 */
+	public void setOperatorId(long operatorId) {
+		this.operatorId = operatorId;
 	}
 
 }

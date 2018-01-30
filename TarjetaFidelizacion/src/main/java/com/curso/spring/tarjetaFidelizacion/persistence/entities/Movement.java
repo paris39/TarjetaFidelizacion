@@ -5,15 +5,24 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author jparis
  */
+@Entity
+@Table
 public class Movement {
+	
+	@Id
 	private long id;
 	private Card card;
 	private Date date;
 	private long quantity;
 	private String description;
+	private Operator operator;
 	
 	public Movement() {
 		super();
@@ -25,11 +34,12 @@ public class Movement {
 	 * @param date
 	 * @param quantity
 	 * @param description
+	 * @param operator
 	 */
-	public Movement(long id, Card cardId, Date date, long quantity, String description) {
+	public Movement(long id, Card card, Date date, long quantity, String description, Operator operator) {
 		super();
 		this.id = id;
-		this.card = cardId;
+		this.card = card;
 		this.date = date;
 		this.quantity = quantity;
 		this.description = description;
@@ -52,7 +62,7 @@ public class Movement {
 	/**
 	 * @param card the card to set
 	 */
-	public void setCardId(Card card) {
+	public void setCard(Card card) {
 		this.card = card;
 	}
 
@@ -96,6 +106,20 @@ public class Movement {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @return the operator
+	 */
+	public Operator getOperator() {
+		return operator;
+	}
+
+	/**
+	 * @param operator the operator to set
+	 */
+	public void setOperator(Operator operator) {
+		this.operator = operator;
 	}
 
 }

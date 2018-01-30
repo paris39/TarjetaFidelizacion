@@ -3,11 +3,21 @@
  */
 package com.curso.spring.tarjetaFidelizacion.config;
 
+import java.util.Properties;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -28,6 +38,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages="com.curso.spring.tarjetaFidelizacion") // Se le añaden los paquetes dónde encontrar los beans o componentes de Spring
 public class WebConfig implements WebMvcConfigurer {
 	
+	// CONSTANTES DE RUTAS DE VISTAS
+	private static final String PATH_JSPS = "/WEB-INF/jsps/";
+	private static final String PATH_CLIENT = "/WEB-INF/jsps/client";
+	private static final String PATH_OPERATOR = "/WEB-INF/jsps/operator";
+	
+	// CONSTANTE DE RUTA DE INTERNACIONALIZACION
+	private static final String PATH_MESSAGES = "/WEB-INF/messages";
+	
+	// CONSTANTE DE RUTA DE ENTIDADES
+	private static final String PATH_ENTITIES = "com.curso.spring.tarjetaFidelizacion.persistence.entities";
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
@@ -40,32 +61,39 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) { // Si se pierde el EndPoint GET en FormController está esta solución
 		WebMvcConfigurer.super.addViewControllers(registry);
-		
-//		registry.addViewController("/formulario").setViewName("formulario");
 	}
 	
-	
 	/*** VISTAS ***/
-	// Cliente
+	// Cliente	
 	@Bean
 	public View clientLogin() {
-		return new InternalResourceView("/WEB-INF/jsps/client/login.jsp");
+		return new InternalResourceView(PATH_CLIENT + "/login.jsp");
 	}
 	
 	@Bean
 	public View clientPanel() {
-		return new InternalResourceView("/WEB-INF/jsps/client/panel.jsp");
+		return new InternalResourceView(PATH_CLIENT + "/panel.jsp");
+	}
+	
+	@Bean
+	public View newClient() {
+		return new InternalResourceView(PATH_CLIENT + "/new_client.jsp");
 	}
 	
 	// Operador
 	@Bean
 	public View operatorLogin() {
-		return new InternalResourceView("/WEB-INF/jsps/operator/login.jsp");
+		return new InternalResourceView(PATH_OPERATOR + "/login.jsp");
 	}
 	
 	@Bean
 	public View operatorPanel() {
-		return new InternalResourceView("/WEB-INF/jsps/operator/panel.jsp");
+		return new InternalResourceView(PATH_OPERATOR + "/panel.jsp");
+	}
+	
+	@Bean
+	public View newOperator() {
+		return new InternalResourceView(PATH_OPERATOR + "/new_operator.jsp");
 	}
 	
 	/*** RESOLVERS ***/
@@ -78,21 +106,20 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
-		return new InternalResourceViewResolver("/WEB-INF/jsps/", ".jsp");
+		return new InternalResourceViewResolver(PATH_JSPS, ".jsp");
 	}
 	
-	/**
-	 * @return
-	 */
+	/*** MESSAGES ***/
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		
-		messageSource.setBasenames("/WEB-INF/messages");
+		messageSource.setBasenames(PATH_MESSAGES);
 		
 		return messageSource;
 	}
 	
+	/*** INTERCEPTORS ***/
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		WebMvcConfigurer.super.addInterceptors(registry);
@@ -110,4 +137,56 @@ public class WebConfig implements WebMvcConfigurer {
 		return new LocaleChangeInterceptor();
 	}
 	
+	/*** HIBERNATE ***/
+	@Bean
+	@Autowired
+	public void sessionFactory(DataSource dataSource) {
+		LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
+		
+		localSessionFactoryBean.setDataSource(dataSource);
+		localSessionFactoryBean.setAnnotatedPackages(PATH_ENTITIES);
+		
+		Properties hibernateProperties = new Properties();
+		
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // BBDD Derby
+		hibernateProperties.setProperty("hibernate.show_sql", "true");
+		hibernateProperties.setProperty("hibernate.format_sql", "true");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create"); // validate (default) | update | create | create-drop
+		
+		localSessionFactoryBean.setHibernateProperties(hibernateProperties);
+	}
+	
+	/*
+	@Bean
+	public DataSource dataSource() {
+		BasicDataSource basicDataSource = new BasicDataSource();
+		basicDataSource.setUrl("jdbc:derby://localhost:1527/jndi");
+		basicDataSource.setUsername("root");
+		basicDataSource.setPassword("root");
+		basicDataSource.setDriverClassName("org.apache.derby.jdbc.ClientDriver"); // BBDD Derby
+		
+		return basicDataSource;
+	}
+	*/
+	
+	/**
+	 * Busca en el árbol de recursos JNDI un recurso con path = jdbc/MyLocalDB y lo introducimos como bean de Spring
+	 * 
+	 * @param jndiName
+	 * @return
+	 */
+	@Bean
+	@Resource(name="jdbc/MyLocalDB")
+	//public DataSource dataSource(@Value("${db.jndi}") String jndiName) {
+	public DataSource dataSource() {
+		JndiDataSourceLookup lookup = new JndiDataSourceLookup();
+		lookup.setResourceRef(true);
+		//return lookup.getDataSource("jdbc/MyLocalDB");
+		return lookup.getDataSource("jdbc:mysql://localhost:3306/tarjeta_fidelizacion");
+	}
+	
+	@Bean
+	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
+		return new HibernateTransactionManager(sessionFactory);
+	}
 }

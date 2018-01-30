@@ -14,10 +14,9 @@ public class OperatorDto extends UserDto {
 	
 	@NotEmpty
 	@Length(min=9, max=9)
-	private String cif;
+	private String nif;
 	private String web;
 	private String conversionFactor;
-	private String email;
 	private boolean admin;
 	
 	public OperatorDto() {
@@ -29,39 +28,39 @@ public class OperatorDto extends UserDto {
 	 * @param login
 	 * @param password
 	 * @param name
+	 * @param email
 	 */
-	public OperatorDto(int id, String login, String password, String name) {
-		super(id, login, password, name);
+	public OperatorDto(int id, String login, String password, String name, String email) {
+		super(id, login, password, name, email);
 	}
 
 	/**
-	 * @param cif
+	 * @param nif
 	 * @param web
 	 * @param idType
 	 * @param conversionFactor
 	 * @param admin
 	 */
-	public OperatorDto(String cif, String web, String email, String conversionFactor, boolean admin) {
+	public OperatorDto(String nif, String web, String conversionFactor, boolean admin) {
 		super();
-		this.cif = cif;
+		this.nif = nif;
 		this.web = web;
 		this.conversionFactor = conversionFactor;
-		this.email = email;
 		this.admin = admin;
 	}
 
 	/**
-	 * @return the cif
+	 * @return the nif
 	 */
-	public String getCif() {
-		return cif;
+	public String getNif() {
+		return nif;
 	}
 
 	/**
-	 * @param cif the cif to set
+	 * @param nif the nif to set
 	 */
-	public void setCif(String cif) {
-		this.cif = cif;
+	public void setCif(String nif) {
+		this.nif = nif;
 	}
 
 	/**
@@ -90,20 +89,6 @@ public class OperatorDto extends UserDto {
 	 */
 	public void setConversionFactor(String conversionFactor) {
 		this.conversionFactor = conversionFactor;
-	}
-
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	/**

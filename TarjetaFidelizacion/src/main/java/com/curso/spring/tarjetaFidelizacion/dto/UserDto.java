@@ -3,6 +3,7 @@
  */
 package com.curso.spring.tarjetaFidelizacion.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -19,8 +20,13 @@ public abstract class UserDto {
 	@NotEmpty
 	@Length(min=6)
 	private String password;
+	@Length(min=6)
+	private String repeatPassword;
 	@NotEmpty
 	private String name;
+	@Email
+	@NotEmpty
+	private String email;
 	
 	
 	public UserDto() {
@@ -33,12 +39,13 @@ public abstract class UserDto {
 	 * @param password
 	 * @param name
 	 */
-	public UserDto(int id, String login, String password, String name) {
+	public UserDto(int id, String login, String password, String name, String email) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.name = name;
+		this.email = email;
 	}
 	
 	/**
@@ -91,6 +98,20 @@ public abstract class UserDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	/**
+	 * @return the repeatPassword
+	 */
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	/**
+	 * @param repeatPassword the repeatPassword to set
+	 */
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
 
 	/**
 	 * @return the name
@@ -105,5 +126,19 @@ public abstract class UserDto {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}	
 	
 }

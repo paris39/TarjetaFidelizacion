@@ -12,8 +12,9 @@ public class Operator {
 	private String login;
 	private String password;
 	private String name;
-	private String cif;
+	private String nif;
 	private String web;
+	private String email;
 	private String conversionFactor;
 	private Type type;
 	private boolean admin;
@@ -26,19 +27,21 @@ public class Operator {
 	 * @param login
 	 * @param password
 	 * @param name
-	 * @param cif
+	 * @param nif
 	 * @param web
+	 * @param email
 	 * @param idType
 	 * @param conversionFactor
 	 * @param type
 	 * @param admin
 	 */
-	public Operator(String login, String password, String name, String cif, String web, String conversionFactor, Type type, boolean admin) {
+	public Operator(String login, String password, String name, String nif, String web, String email, String conversionFactor, Type type, boolean admin) {
 		this.login = login;
 		this.password = password;
 		this.name = name;
-		this.cif = cif;
+		this.nif = nif;
 		this.web = web;
+		this.email = email;
 		this.conversionFactor = conversionFactor;
 		this.type = type;
 		this.admin = admin;
@@ -94,17 +97,17 @@ public class Operator {
 	}
 
 	/**
-	 * @return the cif
+	 * @return the nif
 	 */
-	public String getCif() {
-		return cif;
+	public String getNif() {
+		return nif;
 	}
 
 	/**
-	 * @param cif the cif to set
+	 * @param nif the nif to set
 	 */
-	public void setCif(String cif) {
-		this.cif = cif;
+	public void setNif(String nif) {
+		this.nif = nif;
 	}
 
 	/**
@@ -119,6 +122,20 @@ public class Operator {
 	 */
 	public void setWeb(String web) {
 		this.web = web;
+	}
+	
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**

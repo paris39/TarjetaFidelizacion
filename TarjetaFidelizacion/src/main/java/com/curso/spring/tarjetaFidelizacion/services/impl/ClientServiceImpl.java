@@ -6,6 +6,7 @@ package com.curso.spring.tarjetaFidelizacion.services.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,11 @@ import com.curso.spring.tarjetaFidelizacion.dto.CardDto;
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
 import com.curso.spring.tarjetaFidelizacion.dto.OfferDto;
 import com.curso.spring.tarjetaFidelizacion.marshall.ClientMarshall;
+import com.curso.spring.tarjetaFidelizacion.persistence.dao.ClientDAO;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.services.ClientService;
 import com.curso.spring.tarjetaFidelizacion.services.OfferService;
+import com.curso.spring.tarjetaFidelizacion.services.exception.ClientServiceException;
 
 /**
  * @author jparis
@@ -24,10 +27,16 @@ import com.curso.spring.tarjetaFidelizacion.services.OfferService;
 public class ClientServiceImpl implements ClientService {
 	
 	@Autowired
+	private CardService cardService;
+	
+	@Autowired
 	private OfferService offerService;
 	
 	@Autowired
 	private ClientMarshall clientMarshall;
+	
+	@Autowired
+	private ClientDAO clientDAO;
 
 	@Override
 	public long queryPoints(ClientDto client) {
@@ -38,6 +47,7 @@ public class ClientServiceImpl implements ClientService {
 	public boolean clientLogin(ClientDto client) {
 		// TODO
 		if (client.getLogin().equalsIgnoreCase(client.getPassword())) {
+			client.setPassword(null); // Limpieza de password
 			return true;
 		} else {
 			return false;
@@ -45,19 +55,20 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public boolean newClient(ClientDto newClient) {
-		Client client = clientMarshall.clientMarshall(newClient);
+	public void newClient(ClientDto newClient) throws ClientServiceException {
+		Client client = clientMarshall.marshall(newClient);
 		
-		//clientDao.save(client);
-		
-		return false;
+		try {
+			clientDAO.insertClient(client);
+		} catch (HibernateException e) {
+			throw new ClientServiceException(e.getMessage());
+		}
 	}
 	
 	@Override
 	public List<CardDto> listCard(ClientDto client) {
 		// Buscar tarjetas asociadas a clientes
-		
-		return null;
+		return cardService.listCardByClient(clientMarshall.marshall(client));
 	}
 	
 	@Override

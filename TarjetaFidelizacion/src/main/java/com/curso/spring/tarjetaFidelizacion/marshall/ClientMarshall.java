@@ -24,7 +24,7 @@ public class ClientMarshall {
 	 * @param clientDto
 	 * @return
 	 */
-	public Client clientMarshall (ClientDto clientDto) {
+	public Client marshall (ClientDto clientDto) {
 		Client client = new Client();
 		
 		client.setLogin(clientDto.getLogin());
@@ -43,7 +43,7 @@ public class ClientMarshall {
 	 * @param client
 	 * @return
 	 */
-	public ClientDto clientUnMarshall (Client client) {
+	public ClientDto unMarshall (Client client) {
 		ClientDto clientDto = new ClientDto();
 		
 		clientDto.setId(client.getId());
