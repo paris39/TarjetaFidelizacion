@@ -50,7 +50,8 @@ public class ClientController {
 	
 	// Paths constantes
 	private static final String PATH_CLIENT_LOGIN = "/clientLogin";
-	private static final String PATH_NEW_CLIENT = "newClient";
+	private static final String PATH_CLIENT_PANEL = "/clientPanel";
+	private static final String PATH_NEW_CLIENT = "/newClient";
 	private static final String PATH_POINTS_QUERY = "/pointsQuery";
 	
 	@RequestMapping(path = PATH_CLIENT_LOGIN, method = RequestMethod.GET)
@@ -58,13 +59,30 @@ public class ClientController {
 		return CLIENT_LOGIN;
 	}
 	
+	@RequestMapping(path = PATH_NEW_CLIENT, method = RequestMethod.GET)
+	public String newClientInit (Map<String, Object> model) {		
+		return NEW_CLIENT;
+	}
+	
+	@RequestMapping(path = PATH_CLIENT_PANEL, method = RequestMethod.GET)
+	public String clientPanelInit (Map<String, Object> model) {		
+		return CLIENT_PANEL;
+	}
+	
 	@RequestMapping(path = PATH_CLIENT_LOGIN, method = RequestMethod.POST)
 	public String clientLogin (@Valid @ModelAttribute ClientDto client, Errors errors, HttpSession session) {
-		if (clientService.clientLogin(client)) {
-			return CLIENT_PANEL;			
-		} else {
-			// Mensaje de error al usuario TODO
-			session.setAttribute("client", client);
+		try {
+			if (clientService.clientLogin(client)) {
+				return CLIENT_PANEL;			
+			} else {
+				// Mensaje de error al usuario TODO
+				session.setAttribute("client", client);
+				return CLIENT_LOGIN;
+			}
+		} catch (ClientServiceException e) {
+			Error error = new Error(e.getMessage());
+			session.setAttribute("error", error);
+			
 			return CLIENT_LOGIN;
 		}
 	}

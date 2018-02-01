@@ -21,8 +21,9 @@ public interface ClientService {
 	 * 
 	 * @param client
 	 * @return
+	 * @throws ClientServiceException
 	 */
-	public boolean clientLogin (ClientDto client);
+	public boolean clientLogin (ClientDto client) throws ClientServiceException;
 	
 	/**
 	 * Alta de un nuevo cliente

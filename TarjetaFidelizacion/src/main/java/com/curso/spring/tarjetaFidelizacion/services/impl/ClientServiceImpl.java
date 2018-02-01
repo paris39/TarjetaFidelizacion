@@ -6,18 +6,20 @@ package com.curso.spring.tarjetaFidelizacion.services.impl;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.curso.spring.tarjetaFidelizacion.business.ClientBusiness;
+import com.curso.spring.tarjetaFidelizacion.business.marshall.ClientMarshall;
 import com.curso.spring.tarjetaFidelizacion.dto.CardDto;
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
 import com.curso.spring.tarjetaFidelizacion.dto.OfferDto;
-import com.curso.spring.tarjetaFidelizacion.marshall.ClientMarshall;
 import com.curso.spring.tarjetaFidelizacion.persistence.dao.ClientDAO;
+import com.curso.spring.tarjetaFidelizacion.persistence.dao.ClientDataDAO;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.services.ClientService;
 import com.curso.spring.tarjetaFidelizacion.services.OfferService;
+import com.curso.spring.tarjetaFidelizacion.services.exception.ClientPersistenceException;
 import com.curso.spring.tarjetaFidelizacion.services.exception.ClientServiceException;
 
 /**
@@ -35,8 +37,14 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	private ClientMarshall clientMarshall;
 	
-	@Autowired
+	//@Autowired
 	private ClientDAO clientDAO;
+	
+	@Autowired
+	private ClientDataDAO clientDataDAO;
+	
+	@Autowired
+	private ClientBusiness clientBusiness;
 
 	@Override
 	public long queryPoints(ClientDto client) {
@@ -44,23 +52,20 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public boolean clientLogin(ClientDto client) {
-		// TODO
-		if (client.getLogin().equalsIgnoreCase(client.getPassword())) {
-			client.setPassword(null); // Limpieza de password
-			return true;
-		} else {
-			return false;
+	public boolean clientLogin(ClientDto clientDto) throws ClientServiceException {
+		try {
+			Client client = clientDataDAO.findByLogin(clientDto.getLogin());
+			return clientBusiness.testLogin(clientDto, client);
+		} catch (ClientPersistenceException e) {
+			throw new ClientServiceException(e.getMessage());
 		}
 	}
 
 	@Override
-	public void newClient(ClientDto newClient) throws ClientServiceException {
-		Client client = clientMarshall.marshall(newClient);
-		
+	public void newClient(ClientDto newClient) throws ClientServiceException {		
 		try {
-			clientDAO.insertClient(client);
-		} catch (HibernateException e) {
+			clientDataDAO.save(clientMarshall.marshall(newClient));
+		} catch (ClientPersistenceException e) {
 			throw new ClientServiceException(e.getMessage());
 		}
 	}
@@ -86,6 +91,5 @@ public class ClientServiceImpl implements ClientService {
 	public boolean bookOffer(CardDto card, OfferDto offer, int quantity) {
 		return offerService.bookOffer(card, offer, quantity);
 	}
-
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.curso.spring.tarjetaFidelizacion.marshall;
+package com.curso.spring.tarjetaFidelizacion.business.marshall;
 
 import org.springframework.stereotype.Component;
 

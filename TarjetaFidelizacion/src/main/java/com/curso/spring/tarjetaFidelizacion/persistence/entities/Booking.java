@@ -7,10 +7,9 @@ import java.util.Date;
 
 /**
  * @author jparis
- *
  */
 public class Booking {
-
+	
 	private int id;
 	private Date fecha;
 	private Type type;

@@ -5,27 +5,22 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-		<title><spring:message code="client.login.title"/></title>
+		<title><spring:message code="client.panel.title"/></title>
 	</head>
 	<body>
 		<form:form modelAttribute="client" method="POST">
 			<table>
 				<tr>
-					<td><spring:message code="login.login"/></td>
-					<td><form:input path="login" /></td>
-					<td><form:errors path="login"/></td>
-				</tr>
-				<tr>
-					<td><spring:message code="login.password"/></td>
-					<td><form:password path="password" /></td>
-					<td><form:errors path="password"/></td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						<input type="submit" value="login.enter" />
-					</td>
+					<td><spring:message code="client.panel.points"/></td>
+					<td><form:input path="points" /> ${client.points}</td>
+					<td><form:errors path="points"/></td>
 				</tr>
 			</table>
 		</form:form>
+		<table>
+			<tr>
+				<th><spring:message code="client.panel.offers"/></th>
+			</tr>
+		</table>
 	</body>
 </html>

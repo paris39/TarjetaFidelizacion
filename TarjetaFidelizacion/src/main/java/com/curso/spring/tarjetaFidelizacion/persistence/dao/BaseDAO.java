@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public abstract class BaseDAO {
 	
-	@Autowired
+	//@Autowired
 	protected SessionFactory sessionFactory;
 
 }

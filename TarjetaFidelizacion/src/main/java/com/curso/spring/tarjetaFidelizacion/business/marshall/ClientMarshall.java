@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.curso.spring.tarjetaFidelizacion.marshall;
+package com.curso.spring.tarjetaFidelizacion.business.marshall;
 
 import org.springframework.stereotype.Component;
 
@@ -27,12 +27,14 @@ public class ClientMarshall {
 	public Client marshall (ClientDto clientDto) {
 		Client client = new Client();
 		
-		client.setLogin(clientDto.getLogin());
-		client.setPassword(clientDto.getPassword());
-		client.setEmail(clientDto.getEmail());
-		client.setName(clientDto.getName());
-		client.setSurname(clientDto.getSurname());
-		client.setPoints(clientDto.getPoints());
+		if (null != clientDto) {
+			client.setLogin(clientDto.getLogin());
+			client.setPassword(clientDto.getPassword());
+			client.setEmail(clientDto.getEmail());
+			client.setName(clientDto.getName());
+			client.setSurname(clientDto.getSurname());
+			client.setPoints(clientDto.getPoints());
+		}
 		
 		return client;
 	}
@@ -46,11 +48,13 @@ public class ClientMarshall {
 	public ClientDto unMarshall (Client client) {
 		ClientDto clientDto = new ClientDto();
 		
-		clientDto.setId(client.getId());
-		clientDto.setLogin(client.getLogin());
-		clientDto.setName(client.getName());
-		clientDto.setSurname(client.getSurname());
-		clientDto.setPoints(client.getPoints());
+		if (null != client) {
+			clientDto.setId(client.getId());
+			clientDto.setLogin(client.getLogin());
+			clientDto.setName(client.getName());
+			clientDto.setSurname(client.getSurname());
+			clientDto.setPoints(client.getPoints());
+		}
 		
 		return clientDto;
 	}

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 public class WebAppInitializer implements WebApplicationInitializer {
 	
+	/*** CONSTANTES ***/
 	private static final String PATH_CONFIG = "com.curso.spring.tarjetaFidelizacion.config";
 
 	@Override

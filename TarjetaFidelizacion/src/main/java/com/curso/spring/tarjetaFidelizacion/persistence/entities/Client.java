@@ -3,12 +3,18 @@
  */
 package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author jparis
- *
  */
+@Entity
+@Table(name = "CLIENT")
 public class Client {
 	
+	@Id
 	private int id;
 	private String login;
 	private String password;

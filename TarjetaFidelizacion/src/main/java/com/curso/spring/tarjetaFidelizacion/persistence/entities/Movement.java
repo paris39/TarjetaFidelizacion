@@ -5,18 +5,11 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  * @author jparis
  */
-@Entity
-@Table
 public class Movement {
 	
-	@Id
 	private long id;
 	private Card card;
 	private Date date;

@@ -3,21 +3,11 @@
  */
 package com.curso.spring.tarjetaFidelizacion.config;
 
-import java.util.Properties;
-
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -38,17 +28,16 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages="com.curso.spring.tarjetaFidelizacion") // Se le añaden los paquetes dónde encontrar los beans o componentes de Spring
 public class WebConfig implements WebMvcConfigurer {
 	
-	// CONSTANTES DE RUTAS DE VISTAS
+	/*** CONSTANTES ***/
+	// RUTAS DE VISTAS
 	private static final String PATH_JSPS = "/WEB-INF/jsps/";
 	private static final String PATH_CLIENT = "/WEB-INF/jsps/client";
 	private static final String PATH_OPERATOR = "/WEB-INF/jsps/operator";
 	
-	// CONSTANTE DE RUTA DE INTERNACIONALIZACION
+	// RUTA DE INTERNACIONALIZACION
 	private static final String PATH_MESSAGES = "/WEB-INF/messages";
 	
-	// CONSTANTE DE RUTA DE ENTIDADES
-	private static final String PATH_ENTITIES = "com.curso.spring.tarjetaFidelizacion.persistence.entities";
-	
+	// RECURSOS
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
@@ -136,57 +125,5 @@ public class WebConfig implements WebMvcConfigurer {
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		return new LocaleChangeInterceptor();
 	}
-	
-	/*** HIBERNATE ***/
-	@Bean
-	@Autowired
-	public void sessionFactory(DataSource dataSource) {
-		LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
-		
-		localSessionFactoryBean.setDataSource(dataSource);
-		localSessionFactoryBean.setAnnotatedPackages(PATH_ENTITIES);
-		
-		Properties hibernateProperties = new Properties();
-		
-		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"); // BBDD Derby
-		hibernateProperties.setProperty("hibernate.show_sql", "true");
-		hibernateProperties.setProperty("hibernate.format_sql", "true");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create"); // validate (default) | update | create | create-drop
-		
-		localSessionFactoryBean.setHibernateProperties(hibernateProperties);
-	}
-	
-	/*
-	@Bean
-	public DataSource dataSource() {
-		BasicDataSource basicDataSource = new BasicDataSource();
-		basicDataSource.setUrl("jdbc:derby://localhost:1527/jndi");
-		basicDataSource.setUsername("root");
-		basicDataSource.setPassword("root");
-		basicDataSource.setDriverClassName("org.apache.derby.jdbc.ClientDriver"); // BBDD Derby
-		
-		return basicDataSource;
-	}
-	*/
-	
-	/**
-	 * Busca en el árbol de recursos JNDI un recurso con path = jdbc/MyLocalDB y lo introducimos como bean de Spring
-	 * 
-	 * @param jndiName
-	 * @return
-	 */
-	@Bean
-	@Resource(name="jdbc/MyLocalDB")
-	//public DataSource dataSource(@Value("${db.jndi}") String jndiName) {
-	public DataSource dataSource() {
-		JndiDataSourceLookup lookup = new JndiDataSourceLookup();
-		lookup.setResourceRef(true);
-		//return lookup.getDataSource("jdbc/MyLocalDB");
-		return lookup.getDataSource("jdbc:mysql://localhost:3306/tarjeta_fidelizacion");
-	}
-	
-	@Bean
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
-		return new HibernateTransactionManager(sessionFactory);
-	}
+
 }
