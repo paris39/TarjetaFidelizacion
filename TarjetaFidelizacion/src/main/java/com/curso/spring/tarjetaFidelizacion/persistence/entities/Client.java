@@ -3,8 +3,14 @@
  */
 package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
+import java.util.Set;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,13 +21,22 @@ import javax.persistence.Table;
 public class Client {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
+	@Column(unique = true, nullable = false)
 	private String login;
+	@Column
 	private String password;
+	@Column
 	private String name;
+	@Column
 	private String surname;
-	private long points;
+	@Column
+	private Long points;
+	@Column
 	private String email;
+	@OneToMany(mappedBy = "client")
+	private Set<Card> cards;
 	
 		
 	public Client() {
@@ -35,14 +50,16 @@ public class Client {
 	 * @param surname
 	 * @param points
 	 * @param email
+	 * @param cards
 	 */
-	public Client(String login, String password, String name, String surname, long points, String email) {
+	public Client(String login, String password, String name, String surname, Long points, String email, Set<Card> cards) {
 		this.login = login;
 		this.password = password;
 		this.name = name;
 		this.surname = surname;
 		this.points = points;
 		this.email = email;
+		this.cards = cards;
 	}
 	
 	/**
@@ -111,14 +128,14 @@ public class Client {
 	/**
 	 * @return the points
 	 */
-	public long getPoints() {
+	public Long getPoints() {
 		return points;
 	}
 
 	/**
 	 * @param points the points to set
 	 */
-	public void setPoints(long points) {
+	public void setPoints(Long points) {
 		this.points = points;
 	}
 
@@ -134,6 +151,26 @@ public class Client {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * @return the cards
+	 */
+	public Set<Card> getCards() {
+		return cards;
+	}
+
+	/**
+	 * @param cards the cards to set
+	 */
+	public void setCards(Set<Card> cards) {
+		this.cards = cards;
+	}
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", login=" + login + ", password=" + password + ", name=" + name + ", surname="
+				+ surname + ", points=" + points + ", email=" + email + ", cards=" + cards + "]";
 	}
 	
 }

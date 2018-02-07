@@ -1,6 +1,5 @@
 /**
  * @author jparis
- *
  */
 @TypeDefs({
     @TypeDef(

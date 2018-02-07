@@ -19,7 +19,7 @@ import com.curso.spring.tarjetaFidelizacion.persistence.entities.Operator;
 import com.curso.spring.tarjetaFidelizacion.services.OperatorService;
 
 /**
- * Controlador de las operaciones de Usuario (Clientes y Operadores)
+ * Controlador de las operaciones de Operadores
  * 
  * @author jparis
  */

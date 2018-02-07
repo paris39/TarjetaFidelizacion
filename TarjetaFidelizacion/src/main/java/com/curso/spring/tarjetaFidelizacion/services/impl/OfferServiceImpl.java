@@ -3,6 +3,7 @@
  */
 package com.curso.spring.tarjetaFidelizacion.services.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,13 +26,13 @@ public class OfferServiceImpl implements OfferService {
 	
 	@Override
 	public List<OfferDto> listAllOffer() {
-		return null;
+		return new ArrayList<OfferDto>();
 	}
 
 	@Override
 	public List<OfferDto> listOfferByCriterial(Date initDate, Date endDate, float minPrice, float maxPrice,
 			String initZone, String endZone) {
-		return null;
+		return new ArrayList<OfferDto>();
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public interface ClientService {
 	 * @return
 	 * @throws ClientServiceException
 	 */
-	public boolean clientLogin (ClientDto client) throws ClientServiceException;
+	public ClientDto clientLogin (ClientDto client) throws ClientServiceException;
 	
 	/**
 	 * Alta de un nuevo cliente
@@ -31,7 +31,7 @@ public interface ClientService {
 	 * @param newClient
 	 * @throws ClientServiceException
 	 */
-	public void newClient (ClientDto newClient) throws ClientServiceException;
+	public ClientDto newClient (ClientDto newClient) throws ClientServiceException;
 	
 	/**
 	 * Listado de tarjetas de un determinado cliente

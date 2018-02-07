@@ -14,7 +14,6 @@ import com.curso.spring.tarjetaFidelizacion.business.marshall.ClientMarshall;
 import com.curso.spring.tarjetaFidelizacion.dto.CardDto;
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
 import com.curso.spring.tarjetaFidelizacion.dto.OfferDto;
-import com.curso.spring.tarjetaFidelizacion.persistence.dao.ClientDAO;
 import com.curso.spring.tarjetaFidelizacion.persistence.dao.ClientDataDAO;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 import com.curso.spring.tarjetaFidelizacion.services.ClientService;
@@ -37,22 +36,22 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	private ClientMarshall clientMarshall;
 	
-	//@Autowired
-	private ClientDAO clientDAO;
-	
 	@Autowired
 	private ClientDataDAO clientDataDAO;
 	
 	@Autowired
 	private ClientBusiness clientBusiness;
+	
+	// Constante para Añadir puntos por defecto al registrarse
+	private static final Long DEFAULT_POINTS = new Long(0); // 0 puntos
 
 	@Override
 	public long queryPoints(ClientDto client) {
-		return 0;
+		return DEFAULT_POINTS; // TODO
 	}
 
 	@Override
-	public boolean clientLogin(ClientDto clientDto) throws ClientServiceException {
+	public ClientDto clientLogin(ClientDto clientDto) throws ClientServiceException {
 		try {
 			Client client = clientDataDAO.findByLogin(clientDto.getLogin());
 			return clientBusiness.testLogin(clientDto, client);
@@ -62,9 +61,12 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public void newClient(ClientDto newClient) throws ClientServiceException {		
+	public ClientDto newClient(ClientDto newClient) throws ClientServiceException {		
 		try {
-			clientDataDAO.save(clientMarshall.marshall(newClient));
+			newClient.setPoints(new Long(0));
+			Client newClientAux = clientDataDAO.save(clientMarshall.marshall(newClient));
+			newClientAux.setPassword(null);
+			return clientMarshall.unMarshall(newClientAux);
 		} catch (ClientPersistenceException e) {
 			throw new ClientServiceException(e.getMessage());
 		}

@@ -13,7 +13,7 @@ public class ClientDto extends UserDto {
 	
 	@NotEmpty
 	private String surname;
-	private long points;
+	private Long points;
 	
 		
 	public ClientDto() {
@@ -35,7 +35,7 @@ public class ClientDto extends UserDto {
 	 * @param surname
 	 * @param points
 	 */
-	public ClientDto(String surname, long points) {
+	public ClientDto(String surname, Long points) {
 		super();
 		this.surname = surname;
 		this.points = points;
@@ -58,14 +58,14 @@ public class ClientDto extends UserDto {
 	/**
 	 * @return the points
 	 */
-	public long getPoints() {
+	public Long getPoints() {
 		return points;
 	}
 
 	/**
 	 * @param points the points to set
 	 */
-	public void setPoints(long points) {
+	public void setPoints(Long points) {
 		this.points = points;
 	}
 

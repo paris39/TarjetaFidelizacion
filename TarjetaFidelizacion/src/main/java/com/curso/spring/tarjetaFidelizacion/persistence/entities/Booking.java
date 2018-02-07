@@ -5,14 +5,33 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * @author jparis
  */
+@Entity
+@Table(name = "BOOKING")
 public class Booking {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private Date fecha;
+	@Column
+	private Date date;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="TYPE_ID")
 	private Type type;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="MOVEMENT_ID", nullable = false)
 	private Movement movement;
 	
 	public Booking() {
@@ -21,14 +40,14 @@ public class Booking {
 
 	/**
 	 * @param id
-	 * @param fecha
+	 * @param date
 	 * @param type
 	 * @param movement
 	 */
-	public Booking(int id, Date fecha, Type type, Movement movement) {
+	public Booking(int id, Date date, Type type, Movement movement) {
 		super();
 		this.id = id;
-		this.fecha = fecha;
+		this.date = date;
 		this.type = type;
 		this.movement = movement;
 	}
@@ -41,17 +60,17 @@ public class Booking {
 	}
 
 	/**
-	 * @return the fecha
+	 * @return the date
 	 */
-	public Date getFecha() {
-		return fecha;
+	public Date getDate() {
+		return date;
 	}
 
 	/**
-	 * @param fecha the fecha to set
+	 * @param date the date to set
 	 */
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	/**
@@ -80,6 +99,11 @@ public class Booking {
 	 */
 	public void setMovement(Movement movement) {
 		this.movement = movement;
+	}
+
+	@Override
+	public String toString() {
+		return "Booking [id=" + id + ", date=" + date + ", type=" + type + ", movement=" + movement + "]";
 	}
 		
 }

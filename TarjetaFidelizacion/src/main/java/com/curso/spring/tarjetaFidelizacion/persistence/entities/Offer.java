@@ -5,18 +5,40 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * @author jparis
  */
+@Entity
+@Table(name = "OFFER")
 public class Offer {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column
 	private String description;
+	@Column
 	private Date initDate;
+	@Column
 	private Date endDate;
+	@Column
 	private float price;
+	@Column
 	private String initPlace;
+	@Column
 	private String endPlace;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="OPERATOR_ID", nullable = false)
 	private Operator operator;
 	
 	public Offer() {
@@ -146,6 +168,13 @@ public class Offer {
 	 */
 	public void setOperator(Operator operator) {
 		this.operator = operator;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", description=" + description + ", initDate=" + initDate + ", endDate=" + endDate
+				+ ", price=" + price + ", initPlace=" + initPlace + ", endPlace=" + endPlace + ", operator=" + operator
+				+ "]";
 	}
 	
 }

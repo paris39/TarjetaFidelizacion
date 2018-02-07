@@ -51,6 +51,7 @@ public class ClientMarshall {
 		if (null != client) {
 			clientDto.setId(client.getId());
 			clientDto.setLogin(client.getLogin());
+			clientDto.setEmail(client.getEmail());
 			clientDto.setName(client.getName());
 			clientDto.setSurname(client.getSurname());
 			clientDto.setPoints(client.getPoints());
