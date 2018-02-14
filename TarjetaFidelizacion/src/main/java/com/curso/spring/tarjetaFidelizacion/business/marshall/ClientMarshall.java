@@ -59,6 +59,7 @@ public class ClientMarshall {
 		if (null != client) {
 			clientDto.setId(client.getId());
 			clientDto.setLogin(client.getLogin());
+			clientDto.setPassword(null); // Por seguridad
 			clientDto.setEmail(client.getEmail());
 			clientDto.setName(client.getName());
 			clientDto.setSurname(client.getSurname());

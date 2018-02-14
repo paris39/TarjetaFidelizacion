@@ -55,7 +55,6 @@ public class ClientServiceImpl implements ClientService {
 		try {
 			newClient.setPoints(DEFAULT_POINTS);
 			Client newClientAux = clientDAO.saveAndFlush(clientMarshall.marshall(newClient));
-			newClientAux.setPassword(null);
 			return clientMarshall.unMarshall(newClientAux);
 		} catch (ClientPersistenceException e) {
 			throw new ClientServiceException(e.getMessage());

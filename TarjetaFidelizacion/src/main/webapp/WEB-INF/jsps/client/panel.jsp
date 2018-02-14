@@ -21,16 +21,17 @@
 					<td><form:errors path="points"/></td>
 				</tr>
 			</table>
-		</form:form>
-		<form:form modelAttribute="card" method="POST">
 			<table>
 				<tr>
-					<th><spring:message code="client.panel.cards"/> (${fn:length(cards)})</th>
+					<th><spring:message code="client.panel.cards"/> (${fn:length(client.cards)})</th>
 				</tr>
-				<c:forEach var="card" begin="0" items="${cards}">
+				<c:forEach var="card" begin="0" items="${client.cards}">
 					<tr>
 						<td>${card.id}</td>
-					</tr>				
+					</tr>
+					<tr>
+						
+					</tr>
 				</c:forEach>
 			</table>
 		</form:form>

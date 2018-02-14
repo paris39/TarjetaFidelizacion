@@ -3,6 +3,8 @@
  */
 package com.curso.spring.tarjetaFidelizacion.dto;
 
+import java.util.List;
+
 /**
  * @author jparis
  */
@@ -10,6 +12,7 @@ public class CardDto {
 	
 	private Integer id;
 	private Integer clientId;
+	private List<MovementDto> movementDto;
 	
 	/**
 	 * 
@@ -54,6 +57,20 @@ public class CardDto {
 	 */
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
+	}
+
+	/**
+	 * @return the movementDto
+	 */
+	public List<MovementDto> getMovementDto() {
+		return movementDto;
+	}
+
+	/**
+	 * @param movementDto the movementDto to set
+	 */
+	public void setMovementDto(List<MovementDto> movementDto) {
+		this.movementDto = movementDto;
 	}
 	
 }
