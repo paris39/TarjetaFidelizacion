@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.curso.spring.tarjetaFidelizacion.controllers;
+package com.curso.spring.tarjetaFidelizacion.config;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
  */
 public abstract class UserDto {
 	
-	private int id;
+	private Integer id;
 	@NotEmpty
 	@Length(min=3)
 	private String login;
@@ -39,7 +39,7 @@ public abstract class UserDto {
 	 * @param password
 	 * @param name
 	 */
-	public UserDto(int id, String login, String password, String name, String email) {
+	public UserDto(Integer id, String login, String password, String name, String email) {
 		super();
 		this.id = id;
 		this.login = login;
@@ -60,14 +60,14 @@ public abstract class UserDto {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

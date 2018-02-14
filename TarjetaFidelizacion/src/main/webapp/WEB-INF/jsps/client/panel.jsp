@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib uri = "http://www.springframework.org/tags/form" prefix = "form" %>
 <%@ taglib uri = "http://www.springframework.org/tags" prefix = "spring" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,15 +22,17 @@
 				</tr>
 			</table>
 		</form:form>
-		<table>
-			<tr>
-				<th><spring:message code="client.panel.movements"/> (${movements.length})</th>
-			</tr>
-			<c:forEach var="movement" begin="0" items="${movements.length}">
+		<form:form modelAttribute="card" method="POST">
+			<table>
 				<tr>
-					<td>${movement.description}</td>
-				</tr>				
-			</c:forEach>
-		</table>
+					<th><spring:message code="client.panel.cards"/> (${fn:length(cards)})</th>
+				</tr>
+				<c:forEach var="card" begin="0" items="${cards}">
+					<tr>
+						<td>${card.id}</td>
+					</tr>				
+				</c:forEach>
+			</table>
+		</form:form>
 	</body>
 </html>

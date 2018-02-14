@@ -26,7 +26,7 @@ import javax.persistence.Table;
 public class Operator {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(unique = true, nullable = false)
 	private String login;
@@ -49,9 +49,9 @@ public class Operator {
 		@JoinColumn(name = "OPERATOR_ID", referencedColumnName = "ID"), 
 		@JoinColumn(name = "TYPE_ID", referencedColumnName = "ID")})
 	private Set<Type> types;
-	@OneToMany(mappedBy = "operator")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "operator")
 	private Set<Movement> movements;
-	@OneToMany(mappedBy = "operator")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "operator")
 	private Set<Offer> offers;
 	
 	

@@ -5,6 +5,7 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +23,13 @@ import javax.persistence.Table;
 public class Type {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column
 	private String description;
-	@ManyToMany(mappedBy = "types")
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "types")
 	private Set<Operator> operators;
-	@OneToMany(mappedBy = "type")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "type")
 	private Set<Booking> bookings;
 	
 	public Type() {

@@ -3,6 +3,8 @@
  */
 package com.curso.spring.tarjetaFidelizacion.dto;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -14,6 +16,7 @@ public class ClientDto extends UserDto {
 	@NotEmpty
 	private String surname;
 	private Long points;
+	private List<CardDto> cards;
 	
 		
 	public ClientDto() {
@@ -69,4 +72,18 @@ public class ClientDto extends UserDto {
 		this.points = points;
 	}
 
+	/**
+	 * @return the cards
+	 */
+	public List<CardDto> getCards() {
+		return cards;
+	}
+
+	/**
+	 * @param cards the cards to set
+	 */
+	public void setCards(List<CardDto> cards) {
+		this.cards = cards;
+	}
+	
 }

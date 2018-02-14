@@ -5,6 +5,7 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,12 +24,12 @@ import javax.persistence.Table;
 public class Card {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private int id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Client.class)
 	@JoinColumn(name="CLIENT_ID", nullable = false)
 	private Client client;
-	@OneToMany(mappedBy = "card")
+	@OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
 	private Set<Movement> movements;
 	
 	public Card() {
@@ -40,7 +41,7 @@ public class Card {
 	 * @param client
 	 * @param movements
 	 */
-	public Card(int id, Client client, Set<Movement> movements) {
+	public Card(Integer id, Client client, Set<Movement> movements) {
 		super();
 		this.id = id;
 		this.client = client;
@@ -50,8 +51,15 @@ public class Card {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	/**

@@ -3,9 +3,13 @@
  */
 package com.curso.spring.tarjetaFidelizacion.business.marshall;
 
+import java.util.HashSet;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.curso.spring.tarjetaFidelizacion.dto.ClientDto;
+import com.curso.spring.tarjetaFidelizacion.persistence.entities.Card;
 import com.curso.spring.tarjetaFidelizacion.persistence.entities.Client;
 
 /**
@@ -17,6 +21,9 @@ public class ClientMarshall {
 	public ClientMarshall() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Autowired
+	private CardMarshall cardMarshall;
 	
 	/**
 	 * Conversión de ClientDto a Client
@@ -34,6 +41,7 @@ public class ClientMarshall {
 			client.setName(clientDto.getName());
 			client.setSurname(clientDto.getSurname());
 			client.setPoints(clientDto.getPoints());
+			client.setCards(new HashSet<Card>());
 		}
 		
 		return client;
@@ -55,6 +63,7 @@ public class ClientMarshall {
 			clientDto.setName(client.getName());
 			clientDto.setSurname(client.getSurname());
 			clientDto.setPoints(client.getPoints());
+			clientDto.setCards(cardMarshall.unMarshallSet(client.getCards()));
 		}
 		
 		return clientDto;

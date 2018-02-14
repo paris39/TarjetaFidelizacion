@@ -5,6 +5,7 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ import javax.persistence.Table;
 public class Offer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column
 	private String description;
@@ -37,7 +38,7 @@ public class Offer {
 	private String initPlace;
 	@Column
 	private String endPlace;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="OPERATOR_ID", nullable = false)
 	private Operator operator;
 	

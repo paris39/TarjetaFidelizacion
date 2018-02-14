@@ -8,8 +8,8 @@ package com.curso.spring.tarjetaFidelizacion.dto;
  */
 public class CardDto {
 	
-	private int id;
-	private int clientId;
+	private Integer id;
+	private Integer clientId;
 	
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class CardDto {
 	 * @param id
 	 * @param clientId
 	 */
-	public CardDto(int id, int clientId) {
+	public CardDto(Integer id, Integer clientId) {
 		super();
 		this.id = id;
 		this.clientId = clientId;
@@ -31,28 +31,28 @@ public class CardDto {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the clientId
 	 */
-	public int getClientId() {
+	public Integer getClientId() {
 		return clientId;
 	}
 
 	/**
 	 * @param clientId the clientId to set
 	 */
-	public void setClientId(int clientId) {
+	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
 	

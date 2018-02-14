@@ -6,6 +6,7 @@ package com.curso.spring.tarjetaFidelizacion.persistence.entities;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,23 +27,23 @@ public class Movement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	@Column
 	private Date date;
 	@Column
 	private Long quantity;
 	@Column
 	private String description;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Offer.class)
 	@JoinColumn(name="OFFER_ID")
 	private Offer offer;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Card.class)
 	@JoinColumn(name="CARD_ID", nullable = false)
 	private Card card;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Operator.class)
 	@JoinColumn(name="OPERATOR_ID", nullable = false)
 	private Operator operator;
-	@OneToMany(mappedBy = "movement")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "movement")
 	private Set<Booking> bookings;
 	
 	public Movement() {
@@ -59,7 +60,7 @@ public class Movement {
 	 * @param operator
 	 * @param bookings
 	 */
-	public Movement(long id, Date date, Long quantity, String description, Offer offer, Card card, Operator operator, Set<Booking> bookings) {
+	public Movement(Long id, Date date, Long quantity, String description, Offer offer, Card card, Operator operator, Set<Booking> bookings) {
 		super();
 		this.id = id;
 		this.card = card;
@@ -74,7 +75,7 @@ public class Movement {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
